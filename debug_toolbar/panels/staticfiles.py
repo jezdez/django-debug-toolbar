@@ -21,7 +21,7 @@ class StaticFile:
         self.path = path
 
     def __str__(self):
-        return self.path
+        return str(self.path)
 
     def real_path(self):
         return finders.find(self.path)
