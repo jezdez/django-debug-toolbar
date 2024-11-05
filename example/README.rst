@@ -13,7 +13,7 @@ interfere with common JavaScript frameworks.
 How to
 ------
 
-The example project requires a working installation of the required packages::
+The example project requires a working installation of Django and a few other packages::
 
     $ python -m pip install -r requirements_dev.txt
 
