@@ -46,8 +46,8 @@ class TimerPanel(Panel):
             (_("Total CPU time"), _("%(total)0.3f msec") % stats),
             (_("Elapsed time"), _("%(total_time)0.3f msec") % stats),
             (
-                _("Middleware time"),
-                _("%(middleware_time)0.3f msec") % stats,
+                _("Toolbar time"),
+                _("%(toolbar_time)0.3f msec") % stats,
             ),
             (
                 _("Context switches"),
@@ -94,8 +94,8 @@ class TimerPanel(Panel):
             #        stats['urss'] = self._end_rusage.ru_idrss
             #        stats['usrss'] = self._end_rusage.ru_isrss
 
-        # Add middleware time to stats
-        stats["middleware_time"] = self.toolbar.middleware_time
+        # Add toolbar time to stats
+        stats["toolbar_time"] = self.toolbar.toolbar_time
         self.record_stats(stats)
 
     def generate_server_timing(self, request, response):
@@ -108,7 +108,7 @@ class TimerPanel(Panel):
             "total_time", "Elapsed time", stats.get("total_time", 0)
         )
         self.record_server_timing(
-            "middleware_time", "Middleware time", stats.get("middleware_time", 0)
+            "toolbar_time", "Toolbar time", stats.get("toolbar_time", 0)
         )
 
     def _elapsed_ru(self, name):
