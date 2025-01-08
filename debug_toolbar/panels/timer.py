@@ -94,8 +94,9 @@ class TimerPanel(Panel):
             #        stats['urss'] = self._end_rusage.ru_idrss
             #        stats['usrss'] = self._end_rusage.ru_isrss
 
-        # Add toolbar time to stats
-        stats["toolbar_time"] = self.toolbar.toolbar_time
+        if hasattr(self, "_toolbar_start_time"):
+            stats["toolbar_time"] = (perf_counter() - self._toolbar_start_time) * 1000
+
         self.record_stats(stats)
 
     def generate_server_timing(self, request, response):
@@ -113,3 +114,9 @@ class TimerPanel(Panel):
 
     def _elapsed_ru(self, name):
         return getattr(self._end_rusage, name) - getattr(self._start_rusage, name)
+
+    def enable_instrumentation(self):
+        self._toolbar_start_time = perf_counter()
+
+    def aenable_instrumentation(self):
+        self._toolbar_start_time = perf_counter()

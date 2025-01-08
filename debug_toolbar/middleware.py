@@ -5,7 +5,6 @@ Debug Toolbar middleware
 import re
 import socket
 from functools import cache
-from time import perf_counter
 
 from asgiref.sync import iscoroutinefunction, markcoroutinefunction
 from django.conf import settings
@@ -79,8 +78,6 @@ class DebugToolbarMiddleware:
             markcoroutinefunction(self)
 
     def __call__(self, request):
-        # Start tracking middleware execution time
-        toolbar_start_time = perf_counter()
         # Decide whether the toolbar is active for this request.
         if self.async_mode:
             return self.__acall__(request)
@@ -101,14 +98,10 @@ class DebugToolbarMiddleware:
             # regardless of the response. Keep 'return' clauses below.
             for panel in reversed(toolbar.enabled_panels):
                 panel.disable_instrumentation()
-            toolbar_end_time = perf_counter()
-            toolbar.toolbar_time = (toolbar_end_time - toolbar_start_time) * 1000
 
         return self._postprocess(request, response, toolbar)
 
     async def __acall__(self, request):
-        # Start tracking middleware execution time
-        toolbar_start_time = perf_counter()
         # Decide whether the toolbar is active for this request.
         show_toolbar = get_show_toolbar()
         if not show_toolbar(request) or DebugToolbar.is_toolbar_request(request):
@@ -132,8 +125,6 @@ class DebugToolbarMiddleware:
             # regardless of the response. Keep 'return' clauses below.
             for panel in reversed(toolbar.enabled_panels):
                 panel.disable_instrumentation()
-            toolbar_end_time = perf_counter()
-            toolbar.middleware_time = (toolbar_end_time - toolbar_start_time) * 1000
 
         return self._postprocess(request, response, toolbar)
 
