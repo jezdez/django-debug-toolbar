@@ -5,9 +5,9 @@ from pprint import pformat, saferepr
 
 from django import http
 from django.core import signing
-from django.templatetags.static import static
 from django.db.models.query import QuerySet, RawQuerySet
 from django.template import RequestContext, Template
+from django.templatetags.static import static
 from django.test.signals import template_rendered
 from django.test.utils import instrumented_test_render
 from django.urls import path
