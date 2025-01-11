@@ -297,6 +297,10 @@ class DebugToolbarTestCase(BaseTestCase):
             len(response.toolbar.get_panel_by_id("SQLPanel").get_stats()["queries"]), 2
         )
 
+    def test_timer_panel_first(self):
+        toolbar = DebugToolbar(self.request, self.get_response)
+        self.assertEqual(toolbar.enabled_panels[0].panel_id, "TimerPanel")
+
 
 @override_settings(DEBUG=True)
 class DebugToolbarIntegrationTestCase(IntegrationTestCase):
