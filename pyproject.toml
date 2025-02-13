@@ -40,14 +40,12 @@ dependencies = [
   "sqlparse>=0.2",
 ]
 
-[project.urls]
-Homepage = "https://github.com/django-commons/django-debug-toolbar"
-Source = "https://github.com/django-commons/django-debug-toolbar"
-Issues = "https://github.com/django-commons/django-debug-toolbar/issues"
-Documentation = "https://django-debug-toolbar.readthedocs.io/"
-Changelog = "https://django-debug-toolbar.readthedocs.io/en/latest/changes.html"
-Download = "https://pypi.org/project/django-debug-toolbar/"
-
+urls.Changelog = "https://django-debug-toolbar.readthedocs.io/en/latest/changes.html"
+urls.Documentation = "https://django-debug-toolbar.readthedocs.io/"
+urls.Download = "https://pypi.org/project/django-debug-toolbar/"
+urls.Homepage = "https://github.com/django-commons/django-debug-toolbar"
+urls.Issues = "https://github.com/django-commons/django-debug-toolbar/issues"
+urls.Source = "https://github.com/django-commons/django-debug-toolbar"
 
 [tool.hatch.build.targets.wheel]
 packages = [
